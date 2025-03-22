@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public ShipController shipController;
     [SerializeField] private float speed = 200.0f;
     [SerializeField] private float destroyDelay = 5.0f;
     private void OnEnable()
@@ -18,6 +19,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.tag == "Asteroid")
         {
+            shipController.IncreaseScore();
             Asteroid asteroid = other.GetComponent<Asteroid>();
             asteroid.TakeDamage();
             Destroy(gameObject);
